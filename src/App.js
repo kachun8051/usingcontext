@@ -1,24 +1,20 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import NavBar from './components/NavBar';
+
+export const Context = React.createContext();
 
 function App() {
+
+  const [onOff, setOnOff] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context.Provider value={[onOff, setOnOff]}>
+      <div className="App">
+        <NavBar></NavBar>
+        <h1>{onOff? "Turn On": "Turn Off"}</h1>
+      </div>
+    </Context.Provider>    
   );
 }
 
